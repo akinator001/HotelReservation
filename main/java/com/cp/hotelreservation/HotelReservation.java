@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class HotelReservation {
@@ -40,9 +42,9 @@ public class HotelReservation {
 		long weekendDays = getWeekendDays(checkin, checkout);
 		long weekDays = days - weekendDays;
 		
-		List<Long> hotelRentList = hotelList.stream()
+		List<Long> hotelRent = hotelList.stream()
 				                .map(hotel -> calculateHotelCost(hotel, weekDays, weekendDays)).collect(Collectors.toList());
-		long minRent = Collections.min(hotelRentList);
+		long minRent = Collections.min(hotelRent);
 		
 		List<String> cheapHotelList = hotelList.stream()
 				                   .filter(hotel -> calculateHotelCost(hotel, weekDays, weekendDays) == minRent)
@@ -73,5 +75,24 @@ public class HotelReservation {
 		checkin = new SimpleDateFormat("ddMMMyyyy").parse(startDate);
 		checkout = new SimpleDateFormat("ddMMMyyyy").parse(lastDate);
 
+	}
+	
+	public String findCheapestBestRatedHotelForRegularCustomer(String start, String finish) throws ParseException {
+		convertToDates(start, finish);
+		long days = ((checkout.getTime()-checkin.getTime())/(1000*60*60*24))+1;
+		
+		long weekendDays = getWeekendDays(checkin, checkout);
+		long weekDays = days - weekendDays;
+		List<Long> hotelRent = hotelList.parallelStream()
+		                 		.map(hotel -> calculateHotelCost(hotel, weekDays, weekendDays)).collect(Collectors.toList());
+		long minRent = Collections.min(hotelRent);
+		
+		List<Hotel> cheapHotelList = hotelList.stream()
+				                   .filter(hotel -> calculateHotelCost(hotel, weekDays, weekendDays) == minRent)
+				                    .collect(Collectors.toList());
+		Hotel hotel = cheapHotelList.stream().max(Comparator.comparing(Hotel::getRating))
+				       .orElseThrow(NoSuchElementException::new);
+		System.out.println("Hotel : " + hotel.getHotelName() + " Rating : " + hotel.getRating() + " Cost : " + minRent);
+		return hotel.getHotelName();
 	}
 }
