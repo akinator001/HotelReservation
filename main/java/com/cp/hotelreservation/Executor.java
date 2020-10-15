@@ -32,7 +32,7 @@ public class Executor {
 		String startDate = sc.next();
 		System.out.println("Enter last date in format (ddMMMyyyy)");
 		String lastDate = sc.next();
-//		System.out.print(hotelReservation.findCheapestHotel(startDate, lastDate));
+		System.out.print(hotelReservation.findCheapestHotel(startDate, lastDate));
 		System.out.print(hotelReservation.findCheapestHotelWeekdayAndWeekend(startDate, lastDate));
 		
 	}

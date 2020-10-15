@@ -28,8 +28,19 @@ public class HotelTest {
 		hotelReservation.addHotel("RidgeWood", 220 , 150 ,5);
 		List<String> hotel = hotelReservation.findCheapestHotelWeekdayAndWeekend("10Sep2020","11Sep2020");
 
-		List<String> expectedhotel = new ArrayList<>(Arrays.asList("LakeWood","BridgeWood"));
+		List<String> expectedHotel = new ArrayList<>(Arrays.asList("LakeWood","BridgeWood"));
 
-		Assert.assertEquals(expectedhotel , hotel);
+		Assert.assertEquals(expectedHotel , hotel);
+	}	
+	
+	@Test
+	public void checkCheapestBestRatedHotelForRegularCustomers() throws ParseException {
+		HotelReservation hotelReservation = new HotelReservation();
+		hotelReservation.addHotel("LakeWood", 110 , 90 , 3);
+		hotelReservation.addHotel("BridgeWood", 150 , 50 ,4);
+		hotelReservation.addHotel("RidgeWood", 220 , 150 ,5);
+		
+		String hotel = hotelReservation.findCheapestBestRatedHotelForRegularCustomer("10Sep2020","11Sep2020");
+		Assert.assertEquals("BridgeWood", hotel);
 	}	
 }
