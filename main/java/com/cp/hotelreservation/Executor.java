@@ -17,7 +17,9 @@ public class Executor {
 			int weekdayRate = sc.nextInt();
 			System.out.println("Enter rate for regular customer on weekend");
 			int weekendRate = sc.nextInt();
-			hotelReservation.addHotel(hotel_name, weekdayRate,weekendRate);
+			System.out.println("Enter rating of hotel");
+			int rating = sc.nextInt();
+			hotelReservation.addHotel(hotel_name, weekdayRate,weekendRate,rating);
 			System.out.println("To add more hotel Y/N");
 			char choice = sc.next().charAt(0);
 			if (choice == 'Y' || choice == 'y')
@@ -30,6 +32,8 @@ public class Executor {
 		String startDate = sc.next();
 		System.out.println("Enter last date in format (ddMMMyyyy)");
 		String lastDate = sc.next();
-		System.out.print(hotelReservation.findCheapestHotel(startDate, lastDate));
+//		System.out.print(hotelReservation.findCheapestHotel(startDate, lastDate));
+		System.out.print(hotelReservation.findCheapestHotelWeekdayAndWeekend(startDate, lastDate));
+		
 	}
 }
