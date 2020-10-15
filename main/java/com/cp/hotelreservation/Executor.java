@@ -11,7 +11,7 @@ public class Executor {
 		
 		while (true) {
 
-			System.out.println("Enter hotel name");
+			System.out.println("Enter hotel name : ");
 			String hotel_name = sc.next();
 			System.out.println("Enter rate for regular customer on weekday");
 			int weekdayRate = sc.nextInt();
@@ -19,7 +19,12 @@ public class Executor {
 			int weekendRate = sc.nextInt();
 			System.out.println("Enter rating of hotel");
 			int rating = sc.nextInt();
-			hotelReservation.addHotel(hotel_name, weekdayRate,weekendRate,rating);
+			System.out.println("Enter special rate for loyal customer for weekdays");
+			int rewardCustomerWeekday=sc.nextInt();
+			System.out.println("Enter special rate for loyal customer for weekend");
+			int rewardCustomerWeekend=sc.nextInt();
+			
+			hotelReservation.addHotel(hotel_name, weekdayRate,weekendRate,rating,rewardCustomerWeekday,rewardCustomerWeekend);
 			System.out.println("To add more hotel Y/N");
 			char choice = sc.next().charAt(0);
 			if (choice == 'Y' || choice == 'y')
