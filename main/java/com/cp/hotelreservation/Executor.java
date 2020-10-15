@@ -40,6 +40,7 @@ public class Executor {
 		System.out.print(hotelReservation.findCheapestHotel(startDate, lastDate));
 		System.out.print(hotelReservation.findCheapestHotelWeekdayAndWeekend(startDate, lastDate));
 		System.out.print(hotelReservation.findBestRatedHotel(startDate, lastDate));
+		System.out.println(hotelReservation.findCheapestBestRatedHotelForRewardCustomer(startDate, lastDate));
 		
 	}
 }
