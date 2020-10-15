@@ -4,11 +4,13 @@ public class Hotel {
 	private String hotelName;
 	private int regularCustomerWeekdayRate;
 	private int regularCustomerWeekendRate;
+	private int rating;
 	
-	public Hotel(String hotelName, int regularCustomerWeekdayRate , int regularCustomerWeekendRate) {
+	public Hotel(String hotelName, int regularCustomerWeekdayRate , int regularCustomerWeekendRate,int rating) {
 		this.hotelName = hotelName;
 		this.regularCustomerWeekdayRate = regularCustomerWeekdayRate;
 		this.regularCustomerWeekendRate = regularCustomerWeekendRate;
+		this.rating = rating;
 	}
 
 	public String getHotelName() {
@@ -33,6 +35,14 @@ public class Hotel {
 	
 	public void setRegularCustomerWeekendRate(int regularCustomerWeekendRate) {
 		this.regularCustomerWeekendRate = regularCustomerWeekendRate;
+	}
+	
+	public int getRating() {
+		return this.rating;
+	}
+	
+	public void setRating(int rating) {
+		this.rating =rating;
 	}
 	
 }
