@@ -13,8 +13,8 @@ public class HotelReservation {
 	static Date checkin;
 	static Date checkout;
 	
-	public void addHotel(String hotelName, int rate) {
-		hotelList.add(new Hotel(hotelName , rate));
+	public void addHotel(String hotelName, int weekdayRate , int weekendRate) {
+		hotelList.add(new Hotel(hotelName , weekdayRate, weekendRate));
 	}
 	
 	public String findCheapestHotel(String startDate,String lastDate) throws ParseException {
