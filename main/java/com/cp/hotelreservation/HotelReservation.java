@@ -95,4 +95,18 @@ public class HotelReservation {
 		System.out.println("Hotel : " + hotel.getHotelName() + " Rating : " + hotel.getRating() + " Cost : " + minRent);
 		return hotel.getHotelName();
 	}
+	
+	public String findBestRatedHotel(String startDate, String finishDate) throws ParseException{
+		convertToDates(startDate, finishDate);
+		long days = ((checkout.getTime()-checkin.getTime())/(1000*60*60*24))+1;
+		
+		long weekendDays = getWeekendDays(checkin, checkout);
+		long weekDays = days - weekendDays;
+		
+		Hotel hotel = hotelList.stream().max(Comparator.comparing(Hotel::getRating)).orElseThrow(NoSuchElementException::new);
+	    long cost = calculateHotelCost(hotel,  weekDays, weekendDays);
+	    
+	    System.out.println("Hotel : "+hotel.getHotelName()+" Rating : "+hotel.getRating()+" Cost : "+cost);
+	    return hotel.getHotelName();
+	}
 }

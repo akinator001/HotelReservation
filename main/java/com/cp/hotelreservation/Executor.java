@@ -34,6 +34,7 @@ public class Executor {
 		String lastDate = sc.next();
 		System.out.print(hotelReservation.findCheapestHotel(startDate, lastDate));
 		System.out.print(hotelReservation.findCheapestHotelWeekdayAndWeekend(startDate, lastDate));
+		System.out.print(hotelReservation.findBestRatedHotel(startDate, lastDate));
 		
 	}
 }
