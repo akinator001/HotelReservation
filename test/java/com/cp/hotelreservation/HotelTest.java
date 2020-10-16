@@ -55,5 +55,16 @@ public class HotelTest {
 		HotelReservation hotelReservation = new HotelReservation();
 		String hotel = hotelReservation.findCheapestBestRatedHotelForRewardCustomer("10Sep2020", "11Sep2020");
 	    Assert.assertEquals("RidgeWood", hotel);
-	}	
+	}
+	
+	@Test
+	public void checkDateFormat() {
+		HotelReservation hotelReservation = new HotelReservation();
+		try {
+			String hotel = hotelReservation.findBestRatedHotel("012021", "31Sep");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			Assert.assertTrue(true);
+		}
+	}
 }
